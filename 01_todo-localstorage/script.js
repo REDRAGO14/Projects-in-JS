@@ -27,8 +27,26 @@ button.addEventListener("click", function(){
     
 })
 function renderTask(task){
-    let todo =document.createElement('li').textContent = task.task
-    todos.append(todo)
+    let li = document.createElement('li')
+    li.setAttribute("id" , task.id)
+    li.innerHTML = `
+    <span>${task.task}</span>
+    <button>delete</button>`
+    todos.append(li)
+    if(task.isFinished){
+             li.classList.add("completed")
+            }else{
+                li.classList.remove("completed")
+             }
+    li.addEventListener("click", (e)=>{
+        
+        if(e.target.tagName === "BUTTON") return;
+        li.classList.toggle("completed")
+        task.isFinished = !task.isFinished        
+        saveToLocalstorage()
+    })
+
+
 }
 
 function saveToLocalstorage(){
