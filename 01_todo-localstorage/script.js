@@ -1,55 +1,55 @@
-document.addEventListener("DOMContentLoaded", function(){
-let button = document.getElementById("add-task-btn")
-let input = document.getElementById("todo-input")
-let todos = document.getElementById("todo-list")
+let addTask = document.getElementById("add-task-btn")
+let taskInput =document.getElementById("todo-input")
+let taskList =document.getElementById("todo-list")
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) ||[]
-tasks.forEach(task => renderTask(task))
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []
+tasks.forEach(task => {
+   renderTask(task)
+});
 
-
-button.addEventListener("click", function(){
-    let inputText = input.value.trim()
-    if(inputText === "") return;
-
-    let newTask = {
+addTask.addEventListener("click",()=>{
+    let taskText = taskInput.value.trim()
+    if(taskText === "") return;
+    
+    const newTask = {
         id: Date.now(),
-        task: inputText,
-        isFinished: false
+        text: taskText,
+        isCompleted: false
     }
 
     tasks.push(newTask)
-    saveToLocalstorage()
-    console.log(tasks);
-    
-    input.value = ""
-    
-
-    
+    renderTask(newTask)
+    saveTasksToLocalstorage();
+    taskInput.value = ""
 })
-function renderTask(task){
-    let li = document.createElement('li')
-    li.setAttribute("id" , task.id)
+
+function renderTask(Task){
+    let li = document.createElement("li")
+    li.setAttribute("id", Task.id)
     li.innerHTML = `
-    <span>${task.task}</span>
+    <span>${Task.text}</span>
     <button>delete</button>`
-    todos.append(li)
-    if(task.isFinished){
-             li.classList.add("completed")
-            }else{
-                li.classList.remove("completed")
-             }
-    li.addEventListener("click", (e)=>{
-        
-        if(e.target.tagName === "BUTTON") return;
+    taskList.append(li)
+    if(Task.isCompleted){
+         li.classList.add("completed")
+    }
+    li.addEventListener("click", (e) =>{
+        if(e.target.tagName == "BUTTON") return;
         li.classList.toggle("completed")
-        task.isFinished = !task.isFinished        
-        saveToLocalstorage()
+        Task.isCompleted = !Task.isCompleted
+        saveTasksToLocalstorage()
     })
 
-
+    li.addEventListener("click", (e) =>{
+        if(e.target.tagName === "BUTTON"){
+           tasks =  tasks.filter(items => items.id !== Number(li.id))
+            
+            li.remove()
+           saveTasksToLocalstorage()
+        }
+    })
 }
 
-function saveToLocalstorage(){
+function saveTasksToLocalstorage(){
     localStorage.setItem("tasks", JSON.stringify(tasks))
 }
-})
