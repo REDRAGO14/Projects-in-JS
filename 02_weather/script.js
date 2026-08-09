@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded",()=>{
         
     })
 
- 
+     
+
+    function displayError(){
+        weatherInfo.classList.add("hidden")
+        errorDisplay.classList.remove("hidden")
+    }
     
 })
