@@ -8,4 +8,13 @@ document.addEventListener("DOMContentLoaded",()=>{
     let errorDisplay = document.getElementById("error-message")
 
     
+    getWeatherBtn.addEventListener("click", function (){
+        let city = cityInput.value.trim()
+        if(!city) return;
+        
+        
+    })
+
+ 
+    
 })
