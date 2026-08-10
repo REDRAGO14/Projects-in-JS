@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let expenseListDisplay = document.getElementById("expense-list")
     let expenseTotalDisplay = document.getElementById("total-amount")
 
-    let expenses = []
+    let expenses =  JSON.parse(localStorage.getItem("Expenses")) || []
+    renderExpenses()
 
     expenseForm.addEventListener("submit", (e) =>{
         e.preventDefault()
@@ -21,6 +22,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             expenses.push(newExpense)
             saveExpenseToLocal()
+            renderExpenses()
+        expenseNameInput.value = ""
+        expenseAmountInput.value = ""
         }
     })
+
+    function saveExpenseToLocal(){
+        localStorage.setItem("Expenses",JSON.stringify(expenses))
+    }
+
+    function renderExpenses(){
+        if(expenses.length > 0){
+            expenses.forEach(expense => {
+                let li = document.createElement("li")
+                li.innerHTML = `
+                ${expense.name} - $${expense.amount}
+                `
+                expenseListDisplay.append(li)
+            })
+        }
+    }
 })
