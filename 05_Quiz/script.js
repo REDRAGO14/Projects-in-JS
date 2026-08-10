@@ -47,5 +47,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
   }
 ];
 
-  
+    startBtn.addEventListener("click", () =>{
+        startBtn.classList.add("hidden")
+        questionContainer.classList.remove("hidden")
+        restartBtn.classList.add("hidden")
+        showQuestions()
+    }) 
 })
