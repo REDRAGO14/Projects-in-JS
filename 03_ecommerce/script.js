@@ -7,7 +7,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     let cart = []
 
-    
+    let productList = document.getElementById("product-list")
+    let cartItem =  document.getElementById("cart-items")
+    let emptyCartMsg = document.getElementById("empty-cart")
+    let cartTotalMsg = document.getElementById("cart-total")
+    let priceDisplay = document.getElementById("total-price")
+    let checkoutBtn = document.getElementById("checkout-btn")
+
+   
 
 
 
