@@ -39,10 +39,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         errorDisplay.classList.add("hidden")
         WeatherInfo.classList.remove("hidden")
         
+
+        let {name, main, weather} = data
         
-        cityNameDisplay.textContent =   `City: ${data.name}`
-        weatherDescDisplay.textContent =   `City: ${data.weather[0].description}`
-        cityTempDisplay.textContent =   `City: ${data.main.temp}`
+        cityNameDisplay.textContent =   `City: ${name}`
+        weatherDescDisplay.textContent =   `City: ${weather[0].description}`
+        cityTempDisplay.textContent =   `City: ${main.temp}`
 
         
     }
