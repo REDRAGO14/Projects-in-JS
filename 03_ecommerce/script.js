@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
-
     checkoutBtn.addEventListener("click", () => {carts.length = 0
         alert("checkOut Successful!")
         renderCart()
