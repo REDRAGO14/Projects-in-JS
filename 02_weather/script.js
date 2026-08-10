@@ -5,4 +5,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let cityNameDisplay = document.getElementById("city-name")
     let cityTempDisplay= document.getElementById("temperature")
     let weatherDescDisplay= document.getElementById("discription")
+
+    getWeatherBTN.addEventListener("click", ()=>{
+        let city = cityInput.value.trim()
+        if(!city) return;
+
+
+        
+    })
+
+    function fetchWeatherData(city){
+
+    }
+
+    function displayWeatherData(data){
+
+    }
+    
+    function displayError(){
+        
+    }
 })
