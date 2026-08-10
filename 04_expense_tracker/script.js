@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     }
-    console.log(expenses);
 
     expenseListDisplay.addEventListener("click", (e) => {
         if (e.target.tagName === "BUTTON") {
