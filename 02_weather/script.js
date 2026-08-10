@@ -7,11 +7,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let weatherDescDisplay= document.getElementById("discription")
     let errorDisplay = document.getElementById("error-message")
 
-    getWeatherBTN.addEventListener("click", ()=>{
+    getWeatherBTN.addEventListener("click", async ()=>{
         let city = cityInput.value.trim()
         if(!city) return;
 
-        
+        try {
+            let weatherData = await fetchWeatherData(city)
+            displayWeatherData(weatherData)
+        } catch (error) {
+            displayError()
+        }
         
     })
 
