@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let priceDisplay = document.getElementById("total-price")
     let checkoutBtn = document.getElementById("checkout-btn")
 
+    let carts = []
     products.forEach(product =>{
        let productDiv = document.createElement("div")
        productDiv.classList.add("product")
@@ -34,6 +35,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
     })
 
     function addToCart(product){
+        carts.push(product)
+        renderCart()
+    }
 
+    function renderCart(){
+        
     }
 })
