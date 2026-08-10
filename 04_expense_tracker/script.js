@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     let expenses =  JSON.parse(localStorage.getItem("Expenses")) || []
     renderExpenses()
+    updateTotalExpense()
+    
 
     expenseForm.addEventListener("submit", (e) =>{
         e.preventDefault()
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             expenses.push(newExpense)
             saveExpenseToLocal()
             renderExpenses()
+            updateTotalExpense()
         expenseNameInput.value = ""
         expenseAmountInput.value = ""
         }
@@ -33,6 +36,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
 
     function renderExpenses(){
+        expenseListDisplay.innerHTML = ""
         if(expenses.length > 0){
             expenses.forEach(expense => {
                 let li = document.createElement("li")
@@ -43,4 +47,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
             })
         }
     }
+
+    function calculateTotalExpense(){
+        return expenses.reduce((accumlator, currentItem) => (accumlator + currentItem.amount), 0)
+    }
+
+    function updateTotalExpense(){
+        totalExpense = calculateTotalExpense()
+        expenseTotalDisplay.textContent = totalExpense
+    }
+
+    
 })
