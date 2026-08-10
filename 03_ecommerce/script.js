@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let cartTotalMsg = document.getElementById("cart-total")
     let priceDisplay = document.getElementById("total-price")
     let checkoutBtn = document.getElementById("checkout-btn")
+    let cartItemRemoveBtn = document.getElementById("cart-remove-btn")
+
 
     let carts = []
     products.forEach(product => {
@@ -39,12 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
         carts.push(product)
         renderCart()
     }
+    function removeFromCart(indexToRemove){
+        carts.splice(indexToRemove, 1)
+
+        totalPrice = 0
+        renderCart()
+    }
     let totalPrice = 0
     function renderCart() {
         cartItemDisplay.innerHTML = ""
 
         if (carts.length > 0) {
-            console.log(carts);
             emptyCartMsg.classList.add("hidden")
             cartTotalMsg.classList.remove("hidden")
             cartItemDisplay.classList.remove("hidden")
@@ -52,11 +59,22 @@ document.addEventListener("DOMContentLoaded", () => {
             carts.forEach((item, index) => {
                 totalPrice += item.price
                 let cartItem = document.createElement("div")
+                cartItem.style.display= "flex"
+                cartItem.style.justifyContent = "space-between"
+
                 cartItem.innerHTML = `
-                <span>${ item.name } - $${ item.price.toFixed(2) }</span>`
+                <span>${ item.name } - $${ item.price.toFixed(2) }</span>
+                <button id="cart-remove-btn">remove</button>`
                 cartItemDisplay.appendChild(cartItem)
 
                 priceDisplay.textContent = `$${ totalPrice.toFixed(2) }`
+
+                cartItem.addEventListener("click",(e)=>{
+                    if(e.target.tagName === "BUTTON"){
+                        removeFromCart(index)
+                        
+                    }
+                })
             })
         } else {
             emptyCartMsg.classList.remove("hidden")
@@ -65,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
+   
     checkoutBtn.addEventListener("click", () => {carts.length = 0
         alert("checkOut Successful!")
         renderCart()

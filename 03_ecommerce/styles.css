@@ -73,6 +73,16 @@ h2 {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+#cart-remove-btn {
+  background-color: #6200ea;
+  border: none;
+  padding: 6px;
+  margin: 2px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
 #checkout-btn:hover {
   background-color: #3700b3;
