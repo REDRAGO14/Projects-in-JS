@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
 
     let cart = []
+    let totalPrice = 0
 
     let productList = document.getElementById("product-list")
     let cartItemDisplay = document.getElementById("cart-items")
@@ -16,7 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let cartItemRemoveBtn = document.getElementById("cart-remove-btn")
 
 
-    let carts = []
+    let carts = JSON.parse(localStorage.getItem("carts")) || []
+    renderCart()
+    console.log(carts);
+    
     products.forEach(product => {
         let productDiv = document.createElement("div")
         productDiv.classList.add("product")
@@ -39,15 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function addToCart(product) {
         carts.push(product)
+        saveCart()
         renderCart()
     }
     function removeFromCart(indexToRemove){
         carts.splice(indexToRemove, 1)
-
+        saveCart()
         totalPrice = 0
         renderCart()
     }
-    let totalPrice = 0
+    
     function renderCart() {
         cartItemDisplay.innerHTML = ""
 
@@ -88,5 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("checkOut Successful!")
         renderCart()
     })
+
+    function saveCart(){
+        localStorage.setItem("carts", JSON.stringify(carts))
+    }
 
 })
