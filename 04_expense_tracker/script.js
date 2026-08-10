@@ -42,12 +42,28 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 let li = document.createElement("li")
                 li.innerHTML = `
                 ${expense.name} - $${expense.amount}
+                <button data-id=${expense.id}>delete</button>
                 `
                 expenseListDisplay.append(li)
             })
         }
+        
+        
     }
+console.log(expenses);
 
+expenseListDisplay.addEventListener("click", (e) =>{
+    if(e.target.tagName === "BUTTON"){
+        let id = parseInt(e.target.getAttribute("data-id"))
+        let target = expenses.find(item => item.id === id);
+        expenses.splice(expenses.indexOf(target), 1)
+        saveExpenseToLocal()
+        renderExpenses()
+        updateTotalExpense()
+            
+        }
+        
+    })
     function calculateTotalExpense(){
         return expenses.reduce((accumlator, currentItem) => (accumlator + currentItem.amount), 0)
     }
