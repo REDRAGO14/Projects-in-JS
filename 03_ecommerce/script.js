@@ -14,7 +14,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let priceDisplay = document.getElementById("total-price")
     let checkoutBtn = document.getElementById("checkout-btn")
 
-   
+    products.forEach(product =>{
+       let productDiv = document.createElement("div")
+       productDiv.classList.add("product")
+       productDiv.innerHTML = `
+       <span>${product.name} - $${product.price}</span>
+       <button id="${product.id}">Add To Cart</button>
+       `
+       productList.appendChild(productDiv)
+
+    })
 
 
 
