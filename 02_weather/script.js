@@ -36,8 +36,15 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
 
-    function getWeatherData(weatherData){
-
+    function getWeatherData(data){
+        console.log(data);
+        errorDisplay.classList.add("hidden")
+        weatherInfo.classList.remove("hidden")
+        cityNameDisplay.textContent = `CITY: ${data.name}`;
+        temperatureDisplay.textContent = `Temprature: ${data.main.temp}`
+        descriptionDisplay.textContent = `Description: ${data.weather[0].description}`
+        
+        
     }
 
     function displayError(){
