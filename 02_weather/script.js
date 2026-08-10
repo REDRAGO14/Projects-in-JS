@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let WeatherInfo = document.getElementById("weather-info")
     let cityNameDisplay = document.getElementById("city-name")
     let cityTempDisplay= document.getElementById("temperature")
-    let weatherDescDisplay= document.getElementById("discription")
+    let weatherDescDisplay= document.getElementById("description")
     let errorDisplay = document.getElementById("error-message")
     let API_key = "c5dc9142934fa9a0f84a112b3d1d4f25"
     getWeatherBTN.addEventListener("click", async ()=>{
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(!city) return;
 
         try {
-            let weatherData = await fetchWeatherData(city)
+            let weatherData =  await fetchWeatherData(city)
             
             displayWeatherData(weatherData)
         } catch (error) {
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}`
 
         let response = await fetch(url)
+        console.log(response.ok);
         
         if(!response.ok) {
             throw new Error("Fetching the Api has Failed")
@@ -35,6 +36,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     function displayWeatherData(data){
         console.log(data);
+        errorDisplay.classList.add("hidden")
+        WeatherInfo.classList.remove("hidden")
+        
+        
+        cityNameDisplay.textContent =   `City: ${data.name}`
+        weatherDescDisplay.textContent =   `City: ${data.weather[0].description}`
+        cityTempDisplay.textContent =   `City: ${data.main.temp}`
+
         
     }
     
