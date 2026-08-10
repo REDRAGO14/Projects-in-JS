@@ -25,6 +25,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     })
 
+    productList.addEventListener("click", (e)=>{
+        if(e.target.tagName !== "BUTTON") return
+        
+       let productId = parseInt(e.target.getAttribute("id"));
+       let product =  products.find(p => p.id === productId)
+       addToCart(product)
+    })
 
+    function addToCart(product){
 
+    }
 })
