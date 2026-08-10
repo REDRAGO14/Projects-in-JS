@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let cityNameDisplay = document.getElementById("city-name")
     let cityTempDisplay= document.getElementById("temperature")
     let weatherDescDisplay= document.getElementById("discription")
+    let errorDisplay = document.getElementById("error-message")
 
     getWeatherBTN.addEventListener("click", ()=>{
         let city = cityInput.value.trim()
         if(!city) return;
 
-
+        
         
     })
 
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
     
     function displayError(){
-        
+        WeatherInfo.classList.add("hidden")
+        errorDisplay.classList.remove("hidden")
     }
 })
