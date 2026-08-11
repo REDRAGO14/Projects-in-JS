@@ -90,7 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     nextBtn.classList.remove("hidden")
   }
- 
+
+  function showResult(){
+    questionContainer.classList.add("hidden")
+    choiceListDisplay.classList.add("hidden")
+    nextBtn.classList.add("hidden")
+    resultContainer.classList.remove("hidden")
+    scoreDisplay.textContent = `${score} outof ${questions.length}`
+    restartBtn.classList.remove("hidden")
+  }
 
   
 });
