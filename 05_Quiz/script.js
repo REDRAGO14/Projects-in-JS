@@ -58,6 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
     showQuestions();
   });
 
+  nextBtn.addEventListener("click", ()=>{
+    currentQuestionIndex++
+    if(currentQuestionIndex < questions.length){
+      showQuestions()
+    }else{
+      console.log("finished");
+      showResult()
+    }
+  })
+
   function showQuestions() {
     console.log("show question fn called");
     choiceListDisplay.innerHTML = "";
@@ -80,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     nextBtn.classList.remove("hidden")
   }
+ 
 
   
 });
