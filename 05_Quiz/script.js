@@ -73,7 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function selectedAnswer(choice){
-    
+    let correctAnswer = questions[currentQuestionIndex].answer
+    if( choice === correctAnswer){
+      score ++
+      console.log(score);
+    }
+    nextBtn.classList.remove("hidden")
   }
 
   
