@@ -58,15 +58,26 @@ document.addEventListener("DOMContentLoaded", () => {
     showQuestions();
   });
 
-  nextBtn.addEventListener("click", ()=>{
-    currentQuestionIndex++
-    if(currentQuestionIndex < questions.length){
-      showQuestions()
-    }else{
+  nextBtn.addEventListener("click", () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestions();
+    } else {
       console.log("finished");
-      showResult()
+      showResult();
     }
-  })
+  });
+
+  restartBtn.addEventListener("click", () => {
+    currentQuestionIndex = 0;
+    score = 0;
+    questionContainer.classList.remove("hidden");
+    choiceListDisplay.classList.remove("hidden");
+    resultContainer.classList.add("hidden");
+
+    restartBtn.classList.remove("add");
+    showQuestions();
+  });
 
   function showQuestions() {
     console.log("show question fn called");
@@ -76,29 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
       let li = document.createElement("li");
       li.textContent = choice;
       li.addEventListener("click", () => {
-        selectedAnswer(choice)
-      })
+        selectedAnswer(choice);
+      });
       choiceListDisplay.append(li);
     });
   }
 
-  function selectedAnswer(choice){
-    let correctAnswer = questions[currentQuestionIndex].answer
-    if( choice === correctAnswer){
-      score ++
+  function selectedAnswer(choice) {
+    let correctAnswer = questions[currentQuestionIndex].answer;
+    if (choice === correctAnswer) {
+      score++;
       console.log(score);
     }
-    nextBtn.classList.remove("hidden")
+    nextBtn.classList.remove("hidden");
   }
 
-  function showResult(){
-    questionContainer.classList.add("hidden")
-    choiceListDisplay.classList.add("hidden")
-    nextBtn.classList.add("hidden")
-    resultContainer.classList.remove("hidden")
-    scoreDisplay.textContent = `${score} outof ${questions.length}`
-    restartBtn.classList.remove("hidden")
+  function showResult() {
+    questionContainer.classList.add("hidden");
+    choiceListDisplay.classList.add("hidden");
+    nextBtn.classList.add("hidden");
+    resultContainer.classList.remove("hidden");
+    scoreDisplay.textContent = `${score} outof ${questions.length}`;
+    restartBtn.classList.remove("hidden");
   }
-
-  
 });
